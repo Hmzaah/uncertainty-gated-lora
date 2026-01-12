@@ -1,0 +1,16 @@
+# Ignore Datasets
+data/
+bdd100k/
+
+# Ignore Model Checkpoints (Heavy)
+checkpoints/
+*.pt
+*.pth
+*.safetensors
+
+# Ignore Python Cache
+__pycache__/
+*.pyc
+
+# Ignore System Files
+.DS_Store

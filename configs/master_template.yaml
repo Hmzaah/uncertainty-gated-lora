@@ -1,0 +1,22 @@
+project:
+  name: "Uncertainty-Gated-LoRA"
+  output_dir: "./checkpoints"
+
+model:
+  base_model: "microsoft/resnet-50"
+  num_classes: 10
+
+adapter:
+  # Options: "lora", "dora", "pissa"
+  method: "lora" 
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.1
+  # "convolution" matches the suffix of every conv layer in HF ResNet
+  target_modules: ["convolution"]
+
+training:
+  batch_size: 32
+  learning_rate: 0.0003
+  epochs: 5
+  device: "cuda"

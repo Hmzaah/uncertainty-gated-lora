@@ -1,0 +1,20 @@
+project:
+  name: "Rain-Expert"
+  output_dir: "./checkpoints/rain"
+
+model:
+  base_model: "microsoft/resnet-50"
+  num_classes: 3
+
+adapter:
+  method: "lora"         # Standard LoRA is fine for texture noise
+  r: 32                  # Higher rank to learn rain streaks
+  lora_alpha: 64
+  lora_dropout: 0.1
+  target_modules: ["convolution"]
+
+training:
+  batch_size: 4
+  learning_rate: 0.0003
+  epochs: 5
+  device: "cuda"

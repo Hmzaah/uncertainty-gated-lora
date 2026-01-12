@@ -1,0 +1,20 @@
+project:
+  name: "Sunny-Expert"
+  output_dir: "./checkpoints/sunny"
+
+model:
+  base_model: "microsoft/resnet-50"
+  num_classes: 3  # Matches your folders (car/road)
+
+adapter:
+  method: "lora"         # Standard LoRA
+  r: 16                  # Rank 16 is enough for clear images
+  lora_alpha: 32
+  lora_dropout: 0.1
+  target_modules: ["convolution"]
+
+training:
+  batch_size: 4          # Small batch size for laptop/WSL
+  learning_rate: 0.0003
+  epochs: 5
+  device: "cuda"

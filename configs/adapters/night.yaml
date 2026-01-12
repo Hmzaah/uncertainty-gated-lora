@@ -1,0 +1,20 @@
+project:
+  name: "Night-Expert"
+  output_dir: "./checkpoints/night"
+
+model:
+  base_model: "microsoft/resnet-50"
+  num_classes: 3
+
+adapter:
+  method: "dora"         # <--- THE UPGRADE: Weight-Decomposed LoRA
+  r: 32                  # Higher rank for harder (noisy) data
+  lora_alpha: 64
+  lora_dropout: 0.1
+  target_modules: ["convolution"]
+
+training:
+  batch_size: 4
+  learning_rate: 0.0002  # Slower learning rate for stability
+  epochs: 10             # More epochs to learn noise patterns
+  device: "cuda"
